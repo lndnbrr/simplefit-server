@@ -1,0 +1,39 @@
+[
+  {
+      "model": "simplefitapi.workoutdescription",
+      "pk": 1,
+      "fields": {
+        "workout_id" : 1,
+        "description_id" : 1
+      }
+  },
+  {
+      "model": "simplefitapi.workoutdescription",
+      "pk": 2,
+      "fields": {
+        "workout_id" : 1,
+        "description_id" : 2
+      }
+  },
+  {   "model": "simplefitapi.workoutdescription",
+      "pk": 3,
+      "fields": {
+        "workout_id": 3,
+        "description_id": 1
+      }
+  },
+  {   "model": "simplefitapi.workoutdescription",
+      "pk": 4,
+      "fields": {
+        "workout_id": 3,
+        "description_id": 3
+      }
+  },
+  {   "model": "simplefitapi.workoutdescription",
+      "pk": 5,
+      "fields": {
+        "workout_id": 3,
+        "description_id": 5
+      }
+  }
+]

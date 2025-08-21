@@ -1,0 +1,44 @@
+[
+  {
+      "model": "simplefitapi.workout",
+      "pk": 1,
+      "fields": {
+        "name" : "Bench Press",
+        "num_of_sets" : 3,
+        "total_reps" : 16,
+        "max_weight" : 145,
+        "time_stamp" : "2025-08-18T21:55:42.250000Z",
+        "is_complete" : true,
+        "muscle_group_id" : 4,
+        "user_id" : 1
+        
+      }
+  },
+  {
+      "model": "simplefitapi.workout",
+      "pk": 2,
+      "fields": {
+        "name" : "Romanian Deadlift",
+        "num_of_sets" : 5,
+        "total_reps" : 30,
+        "max_weight" : 25,
+        "time_stamp": "2025-08-18T21:59:55.370000Z",
+        "is_complete" : true,
+        "muscle_group_id" : 1,
+        "user_id" : 1
+      }
+  },
+  {   "model": "simplefitapi.workout",
+      "pk": 3,
+      "fields": {
+        "name": "Calve Raises",
+        "num_of_sets": 5,
+        "total_reps": 16,
+        "max_weight": 205,
+        "time_stamp" : "2025-08-19T11:23:43.190000Z",
+        "is_complete": false,
+        "muscle_group_id": 3,
+        "user_id" : 1
+      }
+  }
+]

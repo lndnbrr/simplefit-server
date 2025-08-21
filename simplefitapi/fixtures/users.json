@@ -1,0 +1,40 @@
+[
+  {
+      "model": "simplefitapi.user",
+      "pk": 1,
+      "fields": {
+        "first_name" : "Ronald",
+        "last_name" : "Coalman",
+        "email" : "ronnie@gmail.com",
+        "bio" : "yeaaaaaah fellow!",
+        "create_date" : "2025-08-17T09:34:22.987654Z",
+        "num_of_logged_workouts" : 0,
+        "uid" : 1
+      }
+  },
+  {
+      "model": "simplefitapi.user",
+      "pk": 2,
+      "fields": {
+        "first_name" : "Martianus",
+        "last_name" : "Polanski",
+        "email" : "strongestever@gmail.com",
+        "bio" : "I win everything",
+        "create_date": "2025-08-19T11:45:00.000000Z",
+        "num_of_logged_workouts" : 0,
+        "uid" : 2
+      }
+  },
+  {   "model": "simplefitapi.user",
+      "pk": 3,
+      "fields": {
+        "first_name": "Jay",
+        "last_name": "Valet",
+        "email": "quadzilla@gmail.com",
+        "bio": "Lightweight, baby!",
+        "create_date" : "2025-08-20T18:56:31.123456Z",
+        "num_of_logged_workouts": 0,
+        "uid": 3
+      }
+  }
+]
