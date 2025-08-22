@@ -40,5 +40,32 @@
         "muscle_group_id": 3,
         "user_id" : 1
       }
+  },
+  {   "model": "simplefitapi.workout",
+      "pk": 4,
+      "fields": {
+        "name": "Sumo Squats",
+        "num_of_sets": 4,
+        "total_reps": 24,
+        "max_weight": 300,
+        "time_stamp" : "2025-08-20T11:23:43.190000Z",
+        "is_complete": true,
+        "muscle_group_id": 3,
+        "user_id" : 2
+      }
+  },
+  {
+    "model": "simplefitapi.workout",
+    "pk": 5,
+    "fields": {
+      "name" : "Romanian Deadlift",
+      "num_of_sets" : 5,
+      "total_reps" : 30,
+      "max_weight" : 30,
+      "time_stamp": "2025-08-22T21:59:55.430540Z",
+      "is_complete" : true,
+      "muscle_group_id" : 1,
+      "user_id" : 1
+    }
   }
 ]
