@@ -11,12 +11,16 @@ class WorkoutView(ViewSet):
 
         user = self.request.query_params.get('user_id_id', None)
         name = self.request.query_params.get('name', None)
+        muscle_group = self.request.query_params.get('muscle_group_id_id', None)
 
         if name is not None:
             workouts = workouts.filter(name=name)
 
         if user is not None:
             workouts = workouts.filter(user_id_id=user)
+
+        if muscle_group is not None:
+            workouts = workouts.filter(muscle_group_id_id=muscle_group)
 
         serialized = WorkoutSerializer(workouts, many=True)
         return Response(serialized.data)
