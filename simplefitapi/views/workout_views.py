@@ -60,6 +60,15 @@ class WorkoutView(ViewSet):
 
         serialized = WorkoutSerializer(workout)
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def destroy(self, request, pk):
+        """delete view for workouts"""
+
+        workout = Workout.objects.get(pk = pk)
+        workout.delete()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 class WorkoutSerializer(serializers.ModelSerializer):
     """ JSON serializer for workouts """
     class Meta:
