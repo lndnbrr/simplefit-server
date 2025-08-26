@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from rest_framework import serializers
-from simplefitapi.models import Description
+from rest_framework import serializers, status
+from simplefitapi.models import Description, User
 
 class DescriptionView(ViewSet):
 
@@ -16,6 +16,18 @@ class DescriptionView(ViewSet):
 
         serialized = DescriptionSerializer(descriptions, many=True)
         return Response(serialized.data)
+
+    def create(self,request):
+        """list view for descriptions"""
+        user = User.objects.get(pk = request.data['user_id_id'])
+        description = Description.objects.create(
+          description = request.data['description'],
+          user_id = user
+        )
+        description.save()
+
+        serialized = DescriptionSerializer(description)
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 class DescriptionSerializer(serializers.ModelSerializer):
     """ JSON serializer for descriptions """
