@@ -17,9 +17,9 @@ class DescriptionView(ViewSet):
         serialized = DescriptionSerializer(descriptions, many=True)
         return Response(serialized.data)
 
-    def create(self,request):
-        """list view for descriptions"""
-        user = User.objects.get(pk = request.data['user_id_id'])
+    def create(self, request):
+        """create view for descriptions"""
+        user = User.objects.get(pk = request.data['user_id'])
         description = Description.objects.create(
           description = request.data['description'],
           user_id = user
@@ -28,6 +28,13 @@ class DescriptionView(ViewSet):
 
         serialized = DescriptionSerializer(description)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
+
+    def destroy(self, request, pk):
+        """delete view for descriptions"""
+        description = Description.objects.get(pk=pk)
+        description.delete()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 class DescriptionSerializer(serializers.ModelSerializer):
     """ JSON serializer for descriptions """
