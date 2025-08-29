@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ViewSet
-from rest_framework import serializers
+from rest_framework import serializers, status
 from rest_framework.response  import Response
 from simplefitapi.models import User
 
@@ -16,6 +16,20 @@ class UserView (ViewSet):
         serialized = UserSerializer(user)
         return Response(serialized.data)
 
+    def create(self, request):
+        """create view for a user"""
+        user = User.objects.create(
+            first_name = request.data['first_name'],
+            last_name = request.data['last_name'],
+            email = request.data['email'],
+            bio = request.data['bio'],
+            create_date = request.data['create_date'],
+            num_of_logged_workouts = request.data['num_of_logged_workouts'],
+            uid = request.data['uid']
+        )
+        user.save()
+        serialized = UserSerializer(user)
+        return Response(serialized.data, status= status.HTTP_201_CREATED)
 
 class UserSerializer(serializers.ModelSerializer):
 
