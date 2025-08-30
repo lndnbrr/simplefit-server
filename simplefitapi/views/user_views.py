@@ -31,6 +31,18 @@ class UserView (ViewSet):
         serialized = UserSerializer(user)
         return Response(serialized.data, status= status.HTTP_201_CREATED)
 
+    def update(self, request, pk):
+        """update view for a user"""
+        user = User.objects.get(pk=pk)
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.email = request.data['email']
+        user.bio = request.data['bio']
+        user.num_of_logged_workouts = request.data['num_of_logged_workouts']
+        user.save()
+        serialized = UserSerializer(user)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
