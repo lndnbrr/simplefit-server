@@ -23,7 +23,6 @@ class UserView (ViewSet):
             last_name = request.data['last_name'],
             email = request.data['email'],
             bio = request.data['bio'],
-            create_date = request.data['create_date'],
             num_of_logged_workouts = request.data['num_of_logged_workouts'],
             uid = request.data['uid']
         )
