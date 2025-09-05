@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from simplefitapi.models import Description, User
+from simplefitapi.models import Description
 
 class DescriptionView(ViewSet):
 
@@ -9,20 +9,19 @@ class DescriptionView(ViewSet):
         """list view for descriptions"""
         descriptions = Description.objects.all()
 
-        user = self.request.query_params.get('user_id_id', None)
+        uid = self.request.query_params.get('uid', None)
 
-        if user is not None:
-            descriptions = descriptions.filter(user_id_id = user)
+        if uid is not None:
+            descriptions = descriptions.filter(uid = uid)
 
         serialized = DescriptionSerializer(descriptions, many=True)
         return Response(serialized.data)
 
     def create(self, request):
         """create view for descriptions"""
-        user = User.objects.get(pk = request.data['user_id'])
         description = Description.objects.create(
           description = request.data['description'],
-          user_id = user
+          uid = request.data['uid'],
         )
         description.save()
 
@@ -42,5 +41,5 @@ class DescriptionSerializer(serializers.ModelSerializer):
     class Meta:
 
         model= Description
-        fields= ('id', 'description', 'user_id')
+        fields= ('id', 'description', 'uid')
         depth = 1
