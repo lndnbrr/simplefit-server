@@ -4,7 +4,7 @@
       "pk": 1,
       "fields": {
           "description": "Strength Training",
-          "user_id": 1
+          "uid": 1
       }
   },
   {
@@ -12,7 +12,7 @@
       "pk": 2,
       "fields": {
         "description": "Upper Body",
-        "user_id": 1
+        "uid": 1
       }
   },
   {
@@ -20,7 +20,7 @@
       "pk": 3,
       "fields": {
         "description": "Lower Body",
-        "user_id": 2
+        "uid": 2
       }
   },
   {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
       "description": "Rehabilitation",
-      "user_id": 2
+      "uid": 2
     }
   },
   {
@@ -36,7 +36,7 @@
     "pk": 5,
     "fields": {
       "description": "Effective",
-      "user_id": 1
+      "uid": 1
     }
   }
 ]
