@@ -1,7 +1,8 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from simplefitapi.models import Workout, MuscleGroup
+from simplefitapi.views.description_views import DescriptionSerializer
+from simplefitapi.models import Workout, MuscleGroup, Description
 
 class WorkoutView(ViewSet):
 
@@ -29,6 +30,7 @@ class WorkoutView(ViewSet):
         """create view for workouts"""
 
         muscle_group = MuscleGroup.objects.get(pk = request.data['muscle_group_id'])
+        description_ids = request.data.get('descriptions',[])
 
         workout = Workout.objects.create(
             name = request.data['name'],
@@ -39,6 +41,10 @@ class WorkoutView(ViewSet):
             muscle_group_id = muscle_group,
             uid = request.data['uid'],
         )
+
+        for description_id in description_ids:
+            description_obj = Description.objects.get(pk=description_id)
+            workout.descriptions.add(description_obj)
 
         serialized = WorkoutSerializer(workout)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
@@ -69,7 +75,14 @@ class WorkoutView(ViewSet):
 
 class WorkoutSerializer(serializers.ModelSerializer):
     """ JSON serializer for workouts """
+
+    descriptions = serializers.PrimaryKeyRelatedField(many = True, queryset = Description.objects.all())
     class Meta:
         model = Workout
-        fields = ('id', 'name', 'num_of_sets', 'total_reps', 'max_weight', 'time_stamp', 'is_complete', 'muscle_group_id', 'uid')
+        fields = ('id', 'name', 'num_of_sets', 'total_reps', 'max_weight', 'time_stamp', 'is_complete', 'muscle_group_id', 'descriptions', 'uid')
         depth = 1
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['descriptions'] = DescriptionSerializer(instance.descriptions.all(), many=True).data
+        return representation
