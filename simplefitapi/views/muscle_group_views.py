@@ -4,10 +4,18 @@ from rest_framework import serializers
 from simplefitapi.models import MuscleGroup
 
 class MuscleGroupView(ViewSet):
-    """list view for descriptions"""
     def list (self, request):
+        """list view for muscle groups"""
+
         muscle_group = MuscleGroup.objects.all()
         serialized = MuscleGroupSerializer(muscle_group, many = True)
+        return Response(serialized.data)
+
+    def retrieve(self, request, pk):
+        """retrieve view for muscle groups"""
+
+        muscle_group = MuscleGroup.objects.get(pk=pk)
+        serialized = MuscleGroupSerializer(muscle_group)
         return Response(serialized.data)
 
 class MuscleGroupSerializer(serializers.ModelSerializer):
