@@ -26,6 +26,13 @@ class WorkoutView(ViewSet):
         serialized = WorkoutSerializer(workouts, many=True)
         return Response(serialized.data)
 
+    def retrieve(self, request, pk):
+        """retrieve view for workouts"""
+        
+        workout = Workout.objects.get(pk=pk)
+        serialized = WorkoutSerializer(workout)
+        return Response(serialized.data)
+
     def create(self, request):
         """create view for workouts"""
 
@@ -53,6 +60,8 @@ class WorkoutView(ViewSet):
         """update view for workouts"""
 
         muscle_group = MuscleGroup.objects.get(pk = request.data['muscle_group_id'])
+        description_ids = request.data.get('descriptions',[])
+
         workout = Workout.objects.get(pk = pk)
         workout.name = request.data['name']
         workout.num_of_sets = request.data['num_of_sets']
@@ -61,6 +70,8 @@ class WorkoutView(ViewSet):
         workout.is_complete = request.data['is_complete']
         workout.muscle_group_id = muscle_group
         workout.save()
+
+        workout.descriptions.set(description_ids)
 
         serialized = WorkoutSerializer(workout)
         return Response(serialized.data, status=status.HTTP_200_OK)
